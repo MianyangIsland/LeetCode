@@ -221,3 +221,166 @@
 // }
 // console.log(lengthOfLastWord(s));
 
+// 66. 加一
+// const digits = [4,3,2,1];
+// const plusOne = (digits) => {
+//   const len = digits.length-1;
+//   const res = [];
+//   let temp = 0;
+//   for(let i = len ; i >= 0 ; --i ) {
+//     let t ;
+//     if( i === len ) {
+//     t  = digits[i] + 1 + temp;
+//     } else {
+//       t = digits[i] + temp;
+//     }
+//     temp = Math.floor( t/ 10);
+//     res.unshift( t % 10 );
+//   }
+//   if( temp !== 0 ) {
+//     res.unshift(temp);
+//   }
+//   return res;
+// }
+// console.log(plusOne(digits));
+
+// 67.二进制求和
+// const a ='11';
+// const b = '1';
+// const addBinary = (a , b) => {
+//  let ans = '';
+//  let ca = 0;
+//  for( let i = a.length - 1 , j = b.length - 1 ; i >=0 || j>=0; i--, j--) {
+//   let sum = ca;
+//   sum += i >=0 ? parseInt(a[i]) : 0;
+//   sum += j >=0 ? parseInt(b[j]) : 0;
+//   ans += sum % 2;
+//   ca = Math.floor( sum / 2) ;
+//  }
+//  ans += ca === 1 ? ca : '';
+//  return ans.split('').reverse().join('');
+// }
+// console.log(addBinary(a,b))
+
+// 69. x的平方根.
+
+// let x = 8;
+// const mySqrt  = (x) => {
+//   if(x == 0 || x == 1) {
+//     return x;
+//   }
+//   for( let i = 0; i < x ; ++i ) {
+//     if( i * i < x && (i+ 1) * (i + 1) > x || i * i === x) {
+//       return i;
+//     }
+//   }
+// }
+
+// console.log(mySqrt(x))
+
+// 70. 爬楼梯
+// const n = 3;
+// const climbStairs = (n) => {
+//    let a = 1;
+//    let b = 2;
+//    if( n === 1) {
+//     return a;
+//    }
+//    if( n === 2 ) {
+//     return b;
+//    }
+//    let res = 0;
+//    for( let i = 3; i <= n ; ++i) {
+//     res = a + b;
+//     a = b;
+//     b = res;
+//    }
+//    return res;
+// }
+// console.log(climbStairs(n));
+
+// 83. 删除排序链表中的重复元素.
+// const deleteDuplicates = (head) => {
+//   if( !head ) {
+//     return head;
+//   }
+//   let cur = head;
+//   while(cur.next) {
+//     if( cur.val === cur.next.val ) {
+//       cur.next = cur.next.next;
+//     } else {
+//       cur = cur.next;
+//     }
+//   }
+//   return head;
+// }
+
+// 88. 删除排序链表中的重复元素
+
+// 94. 二叉树的中序遍历
+// const inorderTraversal = ( root ) => {
+
+//   const res = [];
+//   const inorder = ( root ) => {
+//     if( !root ) {
+//       return;
+//     }
+//     if( root.left ) inorder(root.left);
+//     res.push(root.val);
+//     if(root.right) inorder(root.right);
+//   }
+//   inorder(root);
+//   return res;
+// }
+
+// 
+
+// 100. 相同的树
+// const isSameTree = (p , q) => {
+//   if( p === null && q === null ) {
+//     return true;
+//   }
+//   if( p === null || q === null ) {
+//     return false;
+//   }
+//   if( p.val !== q.val) {
+//     return false;
+//   }
+//   return isSameTree(p.left,q.left) && isSameTree(p.right, q.right);
+// }
+
+
+// 101. 对称二叉树
+// const isSymmetric = ( root ) => {
+//   if( root === null ) return true;
+//   let p = root.left;
+//   let q = root.right;
+
+//   const inorder  = (a , b) => {
+//     if( a === null && b === null) {
+//       return true;
+//     }
+//     if( a === null || b === null ) {
+//       return false;
+//     }
+//     if( a.val !== b.val) {
+//       return false;
+//     }
+//     return inorder(a.left, b.right) && inorder(a.right, b.left);
+//   }
+//   return inorder(p,q);
+// }
+
+
+// 104. 二叉树的最大深度
+// const maxDepth = (root) => {
+//   if( !root ) {
+//     return 0;
+//   } else {
+//     const left = maxDepth(root.left);
+//     const right = maxDepth(root.right);
+//     return Math.max(left,right) + 1; 
+//   }
+// }
+
+// 108. 将有序数组转换为二叉搜索树
