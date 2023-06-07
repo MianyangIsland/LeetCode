@@ -384,3 +384,357 @@
 // }
 
 // 108. 将有序数组转换为二叉搜索树
+// function TreeNode(val) {
+//   this.val = val;
+//   this.left = this.right = null;
+// }
+
+// function toTreeNode(arr,left,right) {
+//   let mid = Math.floor((right + left ) / 2);
+//   let node = new TreeNode(arr[mid]);
+//   if( left === right) return node;
+//   node.right = toTreeNode(arr,mid + 1, right);
+//   if( right - left === 1) return node;
+//   node.left = toTreeNode(arr,left,mid - 1);
+//   return node;
+// }
+
+// const sortedArrayToBST = (nums) => {
+//   if(nums.length === 0 ){
+//     return null;
+//   }
+//   return toTreeNode(nums,0,nums.length - 1);
+// }
+
+//
+
+// 平衡二叉树
+// const isBalanced = (root) => {
+//    const res = {
+//     isBalancedTree: true,
+//    }
+//    defs(root,res);
+//    return res.isBalancedTree;
+// }
+
+// const maxDepth = (root) => {
+//    if( root === null ) return 0;
+//    return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+// }
+
+// const defs = (root, res) => {
+//    if(root === null) return;
+//    if(Math.abs(maxDepth(root.left) - maxDepth(root.right)) > 1) {
+//     return res.isBalanced = false;
+//    }
+//    defs(root.left,res);
+//    defs(root.right,res);
+// }
+
+// 111. 二叉树的最小深度
+// const minDepth = (root) => {
+//   if( root === null ) {
+//    return 0;
+//   }
+//   if( root.left === null && root.right === null ) {
+//      return 1;
+//   }
+//   let ans = Number.MAX_SAFE_INTEGER;
+//   if( root.left != null ) {
+//    ans = Math.min(minDepth(root.left) , ans);
+//   }
+//   if(root.right != null ){
+//    ans = Math.min(minDepth(root.right),ans);
+//   }
+//   return ans + 1;
+// } 
+
+// 112. 路径总和
+// const hasPathSum = (root, targetSum) => {
+//    if(root === null ) return 0;
+//    let res = false;
+//    const defs = (root, sum) => {
+//       if( !root) {
+//          return;
+//       }
+//       if(sum === targetSum && ( !root.left && !root.right)) {
+//          res = true;
+//       }
+//       if(root.left) defs(root.left, sum + root.left.val);
+//       if(root.right) defs(root.left, sum + root.right.val);
+//    }
+
+//    defs(root, root.val);
+//    return res;
+// }
+
+// 118. 杨辉三角形
+// const generate = (numRows) => {
+//   let res = [];
+//   for( let i = 0; i < numRows ; ++i) {
+//     let temp = new Array(i + 1).fill(1);
+//     for(let j = 1; j < temp.length - 1 ; ++j) {
+//       temp[j] = res[ i - 1][j-1] + res[i - 1][j];
+//     }
+//     res.push(temp);
+//   }
+//   return res;
+// }
+
+// 119. 杨辉三角形 ||
+// const getRow = (rowIndex) => {
+//   let ret = [];
+//   let temp = null;
+//   for( let i = 0; i <= rowIndex; ++i) {
+//     temp = new Array(i+ 1).fill(1);
+//     for( let j = 1; j < temp.length - 1 ; ++j ) {
+//       temp[j] = ret[i - 1][j - 1] + ret[i - 1][j];
+//     }
+//     ret.push(temp);
+//   }
+//   return temp;
+// }
+
+// 121. 买卖股票的最佳时机  --- 取数组两数之差的最大值
+/**
+  基本思路: 取左值最小值，右值最大值， 两数之差即为最大值.
+ */
+// const maxProfit = (prices) => {
+//   if(prices.length === 0 ) return 0;
+//   let min = prices[0];
+//   let max = 0;
+//   for( let p of prices) {
+//     min = Math.min(min,p);
+//     max = Math.max(max,p - min);
+//   }
+//   return max;
+// }
+
+//  125. 验证回文串
+// const s = "A man, a plan, a canal: Panama";
+// const isPalindrome = (s) => {
+//   if(!s.length || s.length === 1) {
+//     return true;
+//   } 
+
+//   let a = '';
+//   s = s.trim().split(''); // 去掉空格，转为字符数组
+//   for( let i = 0 ; i < s.length ; ++i ) {
+//     if((s[i].charCodeAt() >= 65 && s[i].charCodeAt() <= 90) || (s[i].charCodeAt() >= 97 && s[i].charCodeAt() <= 122) ||  (s[i].charCodeAt() >= 48 && s[i].charCodeAt() <= 57 ) ) {
+//       a += s[i].toLowerCase();
+//     }
+//   }
+//   return a === a.split('').reverse().join('');
+// }
+// console.log(isPalindrome(s));
+
+// 141. 环形链表
+// const hasCycle = (head) => {
+//   while(head) {
+//     if(head.tag) {
+//       return true;
+//     }
+//     head.tag = true;
+//     head = head.next;
+//   }
+//   return false;
+// }
+
+// const hasCycle = (head) => {
+//   try{
+//     JSON.stringify(head);
+//   } catch(e) {
+//     return true;
+//   }
+//   return false;
+// }
+
+
+// 160 . 相交链表
+// var getIntersectionNode = function(headA, headB) {
+//   if( headA === null || headB === null) {
+//     return null;
+//   }
+ 
+//   let pA = headA;
+//   let pB = headB;
+//   while( pA !== pB ) {
+//     pA = pA === null ? headB : pA.next;
+//     pB = pB === null ? headA : pB.next;
+//   }
+//    return pA;
+//  };
+
+// var getIntersectionNode = function(headA, headB) {
+//   const visited = new Set();
+//   let temp = headA;
+//   while(temp !== null ) {
+//     visited.add(temp);
+//     temp = temp.next;
+//   }
+//   temp = headB;
+//   while(temp !== null ) {
+//     if(visited.has(temp)) {
+//       return temp;
+//     }
+//     temp = temp.next;
+//   }
+//   return null;
+// };
+
+// 191 . 位1的个数
+// var hammingWeight = function(n) {
+//   let arr = (n + '').split('');
+//   console.log(arr);
+//   let flag = 0;
+//   arr.forEach((item) => {
+//     if(item == 1) {
+//       flag++;
+//     }
+//   })
+//   return flag
+// };
+// const n = 00000000000000000000000000001011;
+// hammingWeight(n);
+
+// 2619. 数组原型对象的最后一个元素
+
+// Array.prototype.last = function() {
+//   let res = -1;
+//   let len = this.length;
+//   if( len ) {
+//       res = this[len - 1];
+//   }  
+//   return res;
+// };
+
+// 2620.  计数器
+// 考察闭包
+// const createCounter = function(n) {
+//   return function() {
+//     return n++;
+//   }
+// }
+
+// 2621. 睡眠函数
+/**
+ * 原理就是返回一个promise,在这个promsie中进行一个对应
+ * 时长的延迟setTimeout,延迟结束执行resolve,即该promsie
+ * 会等到延迟时间到时才会进行回调，达到睡眠的目的.
+ */
+
+// async function sleep(millis) {
+//   return new Promise( resolve => setTimeout(resolve, millis));
+// }
+
+// 2626. 数组归约运算
+// const reduce = function(nums, fn, init) {
+//   let res = init;
+//   for (const num of nums) {
+//     res = fn(res, num);
+//   }
+//   return res;
+// }
+
+// 3. 无重复字符的最长字串
+/**
+ * 给定一个字符串s, 请你找出其中不含有重复的最长字串的长度
+ */
+
+
+// 206. 反转链表
+// const reverseList = (head) => {
+// let prev = null;
+// let curr = head;
+// while(curr) {
+//   const next = curr.next;
+//   curr.next = prev;
+//   prev = curr;
+//   curr = next;
+// }
+// return prev;
+// }
+
+// 704. 二分查找
+// const search = ( nums, target ) => {
+//    let left = 0 ;
+//    let right = nums.length - 1;
+//    while( left <= right ) {
+//     let mid = Math.floor(( right - left ) / 2) + left;
+//     let data = nums[mid];
+//     if(data === target) {
+//       return mid;
+//     } else if ( nums[mid] > target ) {
+//       right = mid - 1;
+//     } else {
+//       left = mid + 1;
+//     }
+//    }
+//    return -1;
+// }
+
+// 217. 存在重复元素
+// const nums = [1,1,1,3,3,4,3,2,4,2];
+// const containsDuplicate = (nums) => {
+//   let temp = new Set();
+//   let flag = false;
+//   nums.forEach( ele => {
+//     if( temp.has(ele) ) {
+//       flag = true;
+//       return flag;
+//     }
+//     temp.add(ele);
+//   });
+//   return flag;
+// }
+// console.log(containsDuplicate(nums));
+
+// 219. 存在重复元素||
+// const containsNearbyDuplicate = ( nums, k ) => {
+//   const map = new Map();
+//   const length = nums.length;
+//   for( let i = 0 ; i < length ; ++i ) {
+//     const num = nums[i];
+//     if( map.has(num) && i - map.get(num) <= k ) {
+//       return true;
+//     }
+//     map.set(num,i);
+//   }
+//   return false;
+// }
+
+// 226. 翻转二叉树
+// const invertTree = (root) => {
+//   if( root === null ) {
+//     return null;
+//   }
+//   const left = invertTree(root.left);
+//   const right = invertTree(root.right);
+//   root.left = right;
+//   root.right = left;
+//   return root;
+// }
+
+// 228. 汇总区间
+// const summaryRanges = (nums) => {
+//   const ret = [];
+//   let i = 0;
+//   const n = nums.length;
+//   while( i < n ) {
+//     const low = i;
+//     i++;
+//     while( i < n && nums[i] === nums[ i - 1] + 1) {
+//       i++;
+//     }
+//     const high = i - 1;
+//     const temp = ['' + nums[low]];
+//     if( low < high ) {
+//       temp.push('->');
+//       temp.push('' + nums[high]);
+//     }
+//     ret.push(temp.join(''));
+//   }
+//   return ret;
+// }
+
+// 231.  2的幂
